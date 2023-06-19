@@ -5,5 +5,5 @@ let percentageOfValue = (yourMoney * 100) / productPrice; //gives how much you h
 let finalDiscount = 100 - percentageOfValue;
 
 console.log(
-    `You need ${finalDiscount}% off to but that item`
+    `You need ${finalDiscount}% off to buy that item`
 );
