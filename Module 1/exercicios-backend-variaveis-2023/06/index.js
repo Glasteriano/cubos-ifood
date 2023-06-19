@@ -4,4 +4,4 @@ hastighet = avstand / tid;
 
 sluttHastighet = hastighet * 3.6;
 
-console.log(`Hastigheten din er ${sluttHastighet}km/t.`)
+console.log(`Farten din er ${sluttHastighet}km/t.`)
