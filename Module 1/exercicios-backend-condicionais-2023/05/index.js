@@ -1,3 +1,8 @@
-const alturaEmCm = 185;
+let heightInCm = 185;
 
-//seu código aqui
+if (heightInCm >= 180) {
+    console.log("Approved!");
+}
+else {
+    console.log("Not approved!");
+}
