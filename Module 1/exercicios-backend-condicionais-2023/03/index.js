@@ -1,4 +1,9 @@
-const ladoA = 3;
-const ladoB = 3;
+const endA = 3;
+const endB = 2;
 
-//seu código aqui
+if (endA === endB) {
+    console.log("Doublet")
+}
+else {
+    console.log("Not doublet")
+};
