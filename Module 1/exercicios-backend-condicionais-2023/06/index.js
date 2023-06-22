@@ -21,4 +21,3 @@ else if (oposto) {
 else if (central) {
     console.log("Central");
 }
-
