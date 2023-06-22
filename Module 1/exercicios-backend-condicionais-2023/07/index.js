@@ -1,5 +1,12 @@
-const aposentada = false;
-const portadoraDeDoenca = false;
-const totalDeRendimentos = 3000000; //emCentavos
+let aposentada = false;
+let portadoraDeDoenca = false;
+let totalDeRendimentos = 3_000_000; //emCentavos
 
-//seu código aqui
+const leaoPegou = totalDeRendimentos > 2_855_970
+
+if (aposentada || portadoraDeDoenca || !leaoPegou) {
+    console.log("Isenta")
+}
+else {
+    console.log("Pega Leão")
+}
