@@ -1,2 +1,6 @@
+const orderQueue = ["order 12", "order 13", "order 14"];
 
-const filaDePedidos = ["pedido 12", "pedido 13", "pedido 14"];
+orderQueue.push("order 15");
+orderQueue.shift();
+
+console.log(orderQueue);
