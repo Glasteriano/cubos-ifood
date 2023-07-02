@@ -1,28 +1,47 @@
-const prova = {
-    aluno: "João",
-    materia: "Português",
-    valor: 10,
-    questoes: [
+const test = {
+    student: "João",
+    subject: "Português",
+    grade: 10,
+    questions: [
         {
-            resposta: "a",
-            correta: "b"
+            answer: "a",
+            right: "b"
         },
         {
-            resposta: "c",
-            correta: "c"
+            answer: "c",
+            right: "c"
         },
         {
-            resposta: "e",
-            correta: "b"
+            answer: "e",
+            right: "b"
         },
         {
-            resposta: "b",
-            correta: "b"
+            answer: "b",
+            right: "b"
         },
         {
-            resposta: "c",
-            correta: "c"
+            answer: "c",
+            right: "c"
         }
     ]
 };
 
+function checkTest(test) {
+    let rightAnswers = 0;
+    const valueOfEachQuestion = test.grade / test.questions.length;
+    
+    for (let answerAndRight of test.questions) {
+        const isRight = answerAndRight.answer === answerAndRight.right;
+
+        if (isRight) {
+            rightAnswers += 1;
+        };
+    };
+
+    const finalResult = valueOfEachQuestion * rightAnswers
+    
+    console.log(`The student ${test.student} got ${rightAnswers} right answers and the final grade was ${finalResult}`)
+
+};
+
+checkTest(test);
