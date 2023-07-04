@@ -42,6 +42,29 @@ const trolley = {
     },
 
     //-----------------------------------------------------------------------------------
+    calcDiscount : function(){
+        let cheapestItem = this.products[0].unitPrice; // assuming the first item is the cheapest
+
+        // check if there are more than 4 items in the trolley
+        const isFreeValid = (this.calcTotalOfItemsAndFinalPrice().totalOfItems > 4);
+        // check if the final price is higher than R$100,00
+        const isPercentOffValid = (this.calcTotalOfItemsAndFinalPrice().finalPriceInCents > 100_00);
+
+        //===========================================================
+        for (let index = 0; index < this.products.length; index++){
+            if (this.products[index].unitPrice < cheapestItem){
+                cheapestItem = this.products[index].unitPrice;
+            };
+        };
+        //===========================================================
+
+        const freeItem = (isFreeValid) ? cheapestItem : 0;
+        const percentOff = (isPercentOffValid) ? this.calcTotalOfItemsAndFinalPrice().finalPriceInCents * 0.1 : 0;
+
+        return (freeItem > percentOff) ? (freeItem / 100) : (percentOff / 100);
+    },
+
+    //-----------------------------------------------------------------------------------
     calcTotalOfItemsAndFinalPrice : function(){
         let finalPriceInCents = 0;
         let totalOfItems = 0;
@@ -58,7 +81,8 @@ const trolley = {
         
         return {
                  totalOfItems : totalOfItems,
-            finalPriceInCents : finalPriceInCents
+            finalPriceInCents : finalPriceInCents,
+            finalPriceInReais : this.convertCentsToReais(finalPriceInCents)
         };
     },
 
@@ -72,7 +96,7 @@ const trolley = {
 
     //-----------------------------------------------------------------------------------
     printDetails : function(){
-        console.log(`CLient: ${this.clientName}\n`);
+        console.log(`Client: ${this.clientName}\n`);
 
         //===========================================================
         for (let index = 0; index < this.products.length; index++){
@@ -84,26 +108,16 @@ const trolley = {
         };
 
         //===========================================================
-        // convert from cents to reais
-        const finalPriceInReais = this.calcTotalOfItemsAndFinalPrice().finalPriceInCents / 100;
-        // just converting in money layout
-        const moneyLayout = finalPriceInReais.toFixed(2);
-
-        //===========================================================
         console.log();
         console.log(`Total of items: ${this.calcTotalOfItemsAndFinalPrice().totalOfItems} items`);
-        console.log(`Total payment: R$${moneyLayout}`);
+        console.log(`Total payment: R$${this.calcTotalOfItemsAndFinalPrice().finalPriceInReais}`);
     },
 
     //-----------------------------------------------------------------------------------
-    printSummary : function(){
-        // convert from cents to reais and become easier to read
-        const totalInCents = this.calcTotalOfItemsAndFinalPrice().finalPriceInCents; 
-        const totalInReais = this.convertCentsToReais(totalInCents);
-        
+    printSummary : function(){ 
         console.log(`Client name: ${this.clientName}`);
         console.log(`Total items: ${this.calcTotalOfItemsAndFinalPrice().totalOfItems}`);
-        console.log(`Total payment: R$${totalInReais}\n`);
+        console.log(`Total payment: R$${this.calcTotalOfItemsAndFinalPrice().finalPriceInReais}\n`);
     }
 };
 
@@ -126,14 +140,22 @@ const newSneaker = {
 
 ///////////// Tests /////////////
 
-// trolley.addProduct(newShorts);
+trolley.printSummary()
+console.log(trolley.calcDiscount())
 
-// trolley.printSummary()
+console.log("-------------------------")
 
-// trolley.addProduct(newSneaker);
+trolley.addProduct(newShorts);
+trolley.printSummary()
+console.log(trolley.calcDiscount())
 
-// trolley.printSummary()
+console.log("-------------------------")
 
-// trolley.printDetails()
+trolley.addProduct(newSneaker);
+trolley.printSummary()
+console.log(trolley.calcDiscount())
 
+console.log("-------------------------")
+
+trolley.printDetails()
 // console.log(trolley.products)
