@@ -140,22 +140,22 @@ const newSneaker = {
 
 ///////////// Tests /////////////
 
-trolley.printSummary()
-console.log(trolley.calcDiscount())
+// trolley.printSummary()
+// console.log(trolley.calcDiscount())
 
-console.log("-------------------------")
+// console.log("-------------------------")
 
-trolley.addProduct(newShorts);
-trolley.printSummary()
-console.log(trolley.calcDiscount())
+// trolley.addProduct(newShorts);
+// trolley.printSummary()
+// console.log(trolley.calcDiscount())
 
-console.log("-------------------------")
+// console.log("-------------------------")
 
-trolley.addProduct(newSneaker);
-trolley.printSummary()
-console.log(trolley.calcDiscount())
+// trolley.addProduct(newSneaker);
+// trolley.printSummary()
+// console.log(trolley.calcDiscount())
 
-console.log("-------------------------")
+// console.log("-------------------------")
 
-trolley.printDetails()
+// trolley.printDetails()
 // console.log(trolley.products)
