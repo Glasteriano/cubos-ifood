@@ -4,6 +4,14 @@ const bankAccount = {
     history : [],
     //=====================================================
 
+    moneyLayout : function(value){
+        const formatValue = (value / 100).toFixed(2);
+        const moneyLayout = `${formatValue}`.replace(".", ",");
+
+        return moneyLayout;
+    },
+    //=====================================================
+
     deposit : function(value){
         this.balance += (value / 100);
         this.history.push(
@@ -13,10 +21,7 @@ const bankAccount = {
             }
         );
 
-        const formatValue = (value / 100).toFixed(2);
-        const moneyLayout = `${formatValue}`.replace(".", ",");
-
-        return `Deposit of R$${moneyLayout} done for client: ${this.name}`;
+        return `Deposit of R$${this.moneyLayout(value)} done for client: ${this.name}`;
     },
     //=====================================================
 
@@ -36,21 +41,17 @@ const bankAccount = {
             }
         );
 
-        const formatValue = (value / 100).toFixed(2);
-        const moneyLayout = `${formatValue}`.replace(".", ",");
-
-        return `Withdrawal of R$${moneyLayout} done for client: ${this.name}`;
+        return `Withdrawal of R$${this.moneyLayout(value)} done for client: ${this.name}`;
     },
     //=====================================================
 
     extract : function(){
-        console.log(`\nExtracto of ${this.name} - Balance: R$${this.balance}\nHistory:`);
+        // converting from Cents to Reais to be easier for the moneyLayout function works properly
+        const reaisToCents = this.balance * 100;
+        console.log(`\nExtract of ${this.name} - Balance: R$${this.moneyLayout(reaisToCents)}\nHistory:`);
 
         for (let balance of this.history){
-            const formatValue = (balance.amount / 100).toFixed(2);
-            const moneyLayout = `${formatValue}`.replace(".", ",");
-    
-            console.log(`\t- ${balance.operation} of R$${moneyLayout}`);
+            console.log(`\t- ${balance.operation} of R$${this.moneyLayout(balance.amount)}`);
         };
     }
 };
