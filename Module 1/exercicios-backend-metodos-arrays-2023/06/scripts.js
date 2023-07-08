@@ -1,9 +1,9 @@
 function findThePet(petName, ownerArray){
-    for (let index = 0; index < ownerArray.length; index++){
-        const isInArray = ownerArray[index].pets.includes(petName);
+    for (let petAndOwner of ownerArray){
+        const isInArray = petAndOwner.pets.includes(petName);
         
         if (isInArray){
-            console.log(`${petName}'s owner is ${ownerArray[index].nome}`);
+            console.log(`${petName}'s owner is ${petAndOwner.nome}`);
             return;
         };
     };
