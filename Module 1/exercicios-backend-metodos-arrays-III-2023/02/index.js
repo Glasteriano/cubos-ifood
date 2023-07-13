@@ -1,5 +1,5 @@
 function cityByLength(stringArray){
-    
+
     console.log(stringArray.reduce((acumulador, valorAtual) => {
         let maiorPalavra = acumulador;
 
