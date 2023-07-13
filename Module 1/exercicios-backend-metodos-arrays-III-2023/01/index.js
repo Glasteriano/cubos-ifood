@@ -59,9 +59,9 @@ const frutas = ["Banana", "Amora", "abacaxi", "uva", "Pera"]
 //________________________________________________________________________
 //________________________________________________________________________
 
-sortCrescent(numeros); // a
-sortDecrescent(numeros); // b
-console.log(numeros.sort()) // c
-alphabeticalOrder(frutas); // d
+sortCrescent(numeros);            // a
+sortDecrescent(numeros);          // b
+console.log(numeros.sort())       // c
+alphabeticalOrder(frutas);        // d
 reverseAlphabeticalOrder(frutas); // e
-orderByLength(frutas); // f
+orderByLength(frutas);            // f
