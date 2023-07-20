@@ -1,0 +1,19 @@
+{
+  "name": "exercicios-backend-primeiro-servidor",
+  "version": "1.0.0",
+  "description": "Exercise about servers for testing the knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodeJs",
+    "JavaScript",
+    "backend"
+  ],
+  "author": "Rafael Porto (Glasteriano)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
