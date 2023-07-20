@@ -6,7 +6,7 @@ const port = 3000;
 const players = ["José", "Maria", "João", "Marcos", "Fernanda"];
 //====================================================================
 
-let index = 0
+let index = 0;
 
 app.get("/", (req, res) => {
     
@@ -20,5 +20,5 @@ app.get("/", (req, res) => {
 //====================================================================
 
 app.listen(port, () => {
-console.log(`The server is listening on Port: ${port}`)
+    console.log(`The server is listening on Port: ${port}`);
 });
