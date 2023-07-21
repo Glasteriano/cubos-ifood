@@ -25,9 +25,31 @@ function removePlayer(req, res){
     players.splice(index, 1);
     res.send(players);
 };
+//_______________________________________________
+
+function addPlayer(req, res){
+    const arraySize = players.length;
+    const { name, index } = req.query;
+
+    if (index >= arraySize){
+        return res.send(`The index (${index}) do not exist in the array. The player was not added!`);
+    };
+    //-----------------------------------
+
+    if (index){
+        players.splice(index, 0, name);
+    }
+    else {
+        players.push(name);
+    }
+    //-----------------------------------
+
+    res.send(players);
+};
 //===================================================================
 
 module.exports = {
     nextPlayer,
-    removePlayer
+    removePlayer,
+    addPlayer
 };
