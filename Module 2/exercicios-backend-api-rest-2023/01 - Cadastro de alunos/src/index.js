@@ -1,19 +1,14 @@
+const router = require("./routers")
+
 const express = require("express");
 const app = express();
-
-const {initial} = require("./controllers/students")
-
-const {validPassword} = require("./passwordMiddleware")
 
 const port = 3_000;
 //=========================================================
 
-//---- Middleware ----//
-app.use(validPassword);
-//_______________________________________________
+app.use(express.json());  // middleware that accepts only JSON format
 
-//---- Get ----//
-app.get("/students", initial)
+app.use(router);  // import the routers needed for the application in another file
 //=========================================================
 
-app.listen(port, () => console.log(`Listening on port: ${port}\n`))
+app.listen(port, () => console.log(`Listening on port: ${port}\n`));

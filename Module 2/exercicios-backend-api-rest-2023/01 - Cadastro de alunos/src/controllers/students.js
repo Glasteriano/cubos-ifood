@@ -1,6 +1,8 @@
-function initial(_, res){
-    res.send("It's on");
+const { students } = require("../dataBase/dataBase")
+
+function listStudents(_, res){
+    return res.status(200).json(students);
 };
 //=========================================================
 
-module.exports = {initial};
+module.exports = {listStudents};
