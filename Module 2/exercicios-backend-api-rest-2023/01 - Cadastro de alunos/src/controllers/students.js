@@ -67,12 +67,39 @@ function addStudent(req, res){
 };
 //=================================================================================================
 
+///////--------------- Delete ---------------///////
+function deleteStudent(req, res){
+    const { id } = req.params;
+    let studentToDelete = 0
+    const newArray = []
+    //----------------------------------------------------------
 
+    if (!Number(id)){
+        return res.status(400).json({"message" : "Id might be a number"})
+    }
 
+    for (let student of students){
+        if (student.id !== Number(id)){
+            newArray.push(student);
+        }
+        else {
+            studentToDelete = student
+        };
+    };
+
+    if (studentToDelete === 0){
+        return res.status(404).json({"message" : "Student not found"})
+    }
+    //----------------------------------------------------------
+
+    students = newArray;
+    return res.status(200).json(studentToDelete);
+};
 //=================================================================================================
 
 module.exports = {
     listStudents,
     getStudent,
-    addStudent
+    addStudent,
+    deleteStudent
 };

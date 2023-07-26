@@ -20,7 +20,7 @@ route.post("/students", student.addStudent)
 //_______________________________________________
 
 //---- Delete ----//
-
+route.delete("/students/:id", student.deleteStudent)
 
 //=========================================================
 
