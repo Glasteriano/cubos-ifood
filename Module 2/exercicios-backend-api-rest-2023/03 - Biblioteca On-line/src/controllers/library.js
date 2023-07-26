@@ -187,6 +187,28 @@ function updateNumPages(req, res){
 //========================================================================
 //========================================================================
 
+//////////---------- Delete ----------//////////
+function deleteBook(req, res){
+    const { id } = req. params;
+    let index = 0;
+
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            dataBase.books.splice(index, 1);
+
+            return res.status(200).json({"message" : "Book deleted"});
+        };
+        index++
+    };
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+
+
+
+//========================================================================
+//========================================================================
+
 //////////---------- Exports ----------//////////
 module.exports = {
     showBook,
@@ -197,5 +219,6 @@ module.exports = {
     updateTitle,
     updateAuthor,
     updateYear,
-    updateNumPages
+    updateNumPages,
+    deleteBook
 };

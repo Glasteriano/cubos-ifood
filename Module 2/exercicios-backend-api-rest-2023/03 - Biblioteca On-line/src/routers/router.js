@@ -20,6 +20,10 @@ router.patch("/books/:id/title", libary.updateTitle);
 router.patch("/books/:id/author", libary.updateAuthor);
 router.patch("/books/:id/year", libary.updateYear);
 router.patch("/books/:id/numPages", libary.updateNumPages);
+
+//////////---------- Delete ----------//////////
+router.delete("/books/:id", libary.deleteBook);
+
 //========================================================================
 //========================================================================
 
