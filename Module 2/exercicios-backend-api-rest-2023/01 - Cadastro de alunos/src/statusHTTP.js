@@ -1,17 +1,16 @@
-const express = require("express");
-const app = express();
-
 //---- 2xx ----//
 
 //_______________________________________________
 
 //---- 4xx ----//
 function unauthorized(){
-    return res.status(401).json({"message" : "The password was not given"});
+    const message = {"message" : "The password was not given"};
+    return message
 };
 
 function invalidPassword(){
-    res.status(401).json({"message" : "Invalid password."});
+    const message = {"message" : "Invalid password."};
+    return message
 }
 //_______________________________________________
 

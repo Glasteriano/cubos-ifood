@@ -1,10 +1,10 @@
 const express = require("express");
 const route = express()
 
-const students = require("./dataBase/dataBase");
+// const students = require("./dataBase/dataBase");
 const {validPassword} = require("./passwordMiddleware")
 
-const {listStudents} = require("./controllers/students")
+const student = require("./controllers/students")
 //=========================================================
 
 //---- Middleware ----//
@@ -12,7 +12,8 @@ route.use(validPassword);
 //_______________________________________________
 
 //---- Get ----//
-route.get("/students", listStudents)
+route.get("/students", student.listStudents)
+route.get("/students/:id", student.getStudent)
 //_______________________________________________
 
 //---- Post ----//
