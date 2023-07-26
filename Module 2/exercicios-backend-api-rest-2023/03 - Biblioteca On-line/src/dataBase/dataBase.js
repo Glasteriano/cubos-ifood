@@ -14,6 +14,11 @@ const books = [
         numPages: 158,
     }
 ];
+
+let idGenerator = 3;
 //========================================================================
 
-module.exports = books;
+module.exports = {
+    books,
+    idGenerator
+};

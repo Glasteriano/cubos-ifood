@@ -9,6 +9,9 @@ const libary = require("../controllers/library");
 router.get("/books", libary.showBook);
 router.get("/books/:id", libary.getBookById);
 
+//////////---------- Post ----------//////////
+router.post("/books", libary.addBook)
+
 //========================================================================
 //========================================================================
 
