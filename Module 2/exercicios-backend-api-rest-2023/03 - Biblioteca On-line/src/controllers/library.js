@@ -79,14 +79,27 @@ function updateBook(req, res){
     const { id }                            = req.params;
     const { title, author, year, numPages } = req.body;
 
+    //--------------------------------------
+    
     if (!Number(id)){
         return res.status(400).json({"message" : "The id might be a number."});
     };
+    //--------------------------------------
+
+    const incompletBody  = !title || !author || !year || !numPages;
     
-    if (!title || !author || !year || !numPages){
-        return res.status(400).json({"message" : "The title, author, year and number of page might be given and not empty."});
+    if (incompletBody){
+        return res.status(400).json({"message" : "The title, author, year and number of page might be given."});
     };
+    //--------------------------------------
     
+    const invalidContent = !validString(title) || !validString(author) || !validNumber(year) || !validNumber(numPages);
+
+    if (invalidContent){
+        return res.status(400).json({"message" : "The fields may not be empty or invalid number"});
+    };
+    //--------------------------------------
+
     for (let book of dataBase.books){
         if (book.id === Number(id)){
             book.title    = title;
@@ -97,6 +110,7 @@ function updateBook(req, res){
             return res.status(200).json({"message" : "Book updated"});
         };
     };
+    //--------------------------------------
 
     return res.status(404).json({"message" : "Book not found"});
 };
