@@ -74,9 +74,39 @@ function addBook(req, res){
 //========================================================================
 //========================================================================
 
+//////////---------- Put ----------//////////
+function updateBook(req, res){
+    const { id }                            = req.params;
+    const { title, author, year, numPages } = req.body;
+
+    if (!Number(id)){
+        return res.status(400).json({"message" : "The id might be a number."});
+    };
+    
+    if (!title || !author || !year || !numPages){
+        return res.status(400).json({"message" : "The title, author, year and number of page might be given and not empty."});
+    };
+    
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            book.title    = title;
+            book.author   = author;
+            book.year     = year;
+            book.numPages = numPages;
+
+            return res.status(200).json({"message" : "Book updated"});
+        };
+    };
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+//========================================================================
+//========================================================================
+
 //////////---------- Exports ----------//////////
 module.exports = {
     showBook,
     getBookById,
-    addBook
+    addBook,
+    updateBook
 };
