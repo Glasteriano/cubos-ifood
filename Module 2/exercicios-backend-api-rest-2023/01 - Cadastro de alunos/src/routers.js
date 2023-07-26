@@ -1,7 +1,6 @@
 const express = require("express");
 const route = express()
 
-// const students = require("./dataBase/dataBase");
 const {validPassword} = require("./passwordMiddleware")
 
 const student = require("./controllers/students")
@@ -17,10 +16,11 @@ route.get("/students/:id", student.getStudent)
 //_______________________________________________
 
 //---- Post ----//
-
+route.post("/students", student.addStudent)
 //_______________________________________________
 
 //---- Delete ----//
+
 
 //=========================================================
 

@@ -1,4 +1,5 @@
 const dataBase = {
+    idGenerator : 2,
     students : [
         {
                 id: 1,
@@ -10,4 +11,4 @@ const dataBase = {
     ]
 }
 
-module.exports = dataBase;
+module.exports = dataBase
