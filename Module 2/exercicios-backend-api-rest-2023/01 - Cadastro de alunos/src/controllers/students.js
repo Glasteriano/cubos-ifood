@@ -1,4 +1,5 @@
 let { students, idGenerator } = require("../dataBase/dataBase")
+const courseToAdd = require("../dataBase/validCourses")
 //=================================================================================================
 
 ///////--------------- Get ---------------///////
@@ -37,6 +38,8 @@ function addStudent(req, res){
     const validName       = clearName.length > 0;
     const validSurname    = clearSurname.length > 0;
     const validNameCourse = clearCourse.length > 0;
+
+    const isValidCourse = courseToAdd.includes(course)
     //----------------------------------------------------------
 
     if (!Number(age)){
@@ -50,6 +53,10 @@ function addStudent(req, res){
     if (!validName || !validSurname || !age || !validNameCourse){
         return res.status(400).json({"message" : "Name, surname, age and course might be given and not empty"})
     };
+
+    if (!isValidCourse){
+        return res.status(422).json({"message" : "Course is not able to be added yet"})
+    }
     //----------------------------------------------------------
 
     const student = {
