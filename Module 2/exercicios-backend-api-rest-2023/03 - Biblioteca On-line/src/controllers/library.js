@@ -117,10 +117,85 @@ function updateBook(req, res){
 //========================================================================
 //========================================================================
 
+//////////---------- Patch ----------//////////
+function updateTitle(req, res){
+    const { id } = req.params;
+    const { title } = req.body;
+
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            book.title = title;
+
+            return res.status(200).json({"message" : "Title updated"});
+        };
+    };
+    //--------------------------------------
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+//____________________________________________________
+
+function updateAuthor(req, res){
+    const { id } = req.params;
+    const { author } = req.body;
+
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            book.author = author;
+
+            return res.status(200).json({"message" : "Author updated"});
+        };
+    };
+    //--------------------------------------
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+//____________________________________________________
+
+function updateYear(req, res){
+    const { id } = req.params;
+    const { year } = req.body;
+
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            book.year = year;
+
+            return res.status(200).json({"message" : "Year updated"});
+        };
+    };
+    //--------------------------------------
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+//____________________________________________________
+
+function updateNumPages(req, res){
+    const { id } = req.params;
+    const { numPages } = req.body;
+
+    for (let book of dataBase.books){
+        if (book.id === Number(id)){
+            book.numPages = numPages;
+
+            return res.status(200).json({"message" : "Number of pages updated"});
+        };
+    };
+    //--------------------------------------
+
+    return res.status(404).json({"message" : "Book not found"});
+};
+//========================================================================
+//========================================================================
+
 //////////---------- Exports ----------//////////
 module.exports = {
     showBook,
     getBookById,
     addBook,
-    updateBook
+    updateBook,
+    updateBook,
+    updateTitle,
+    updateAuthor,
+    updateYear,
+    updateNumPages
 };

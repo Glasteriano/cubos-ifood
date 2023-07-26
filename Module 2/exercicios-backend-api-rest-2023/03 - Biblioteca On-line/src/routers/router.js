@@ -14,6 +14,12 @@ router.post("/books", libary.addBook)
 
 //////////---------- Put ----------//////////
 router.put("/books/:id", libary.updateBook);
+
+//////////---------- Patch ----------//////////
+router.patch("/books/:id/title", libary.updateTitle);
+router.patch("/books/:id/author", libary.updateAuthor);
+router.patch("/books/:id/year", libary.updateYear);
+router.patch("/books/:id/numPages", libary.updateNumPages);
 //========================================================================
 //========================================================================
 
