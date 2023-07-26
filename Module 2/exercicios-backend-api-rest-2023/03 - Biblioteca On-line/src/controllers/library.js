@@ -3,13 +3,13 @@ const dataBase = require("../dataBase/dataBase");
 //========================================================================
 
 //////////---------- Validator ----------//////////
-function validString(checkString){
+function validString(checkString) {
     const clearString = checkString.trim();
 
     return (clearString) ? clearString : false;
 };
 
-function validNumber(checkNumber){
+function validNumber(checkNumber) {
     const isNumber = Number(checkNumber);
 
     return (isNumber) ? Number(checkNumber) : false
@@ -18,48 +18,48 @@ function validNumber(checkNumber){
 //========================================================================
 
 //////////---------- Get ----------//////////
-function showBook(_, res){
+function showBook(_, res) {
     return res.status(200).json(dataBase.books);
 };
 //____________________________________________________
 
-function getBookById(req, res){
+function getBookById(req, res) {
     const { id } = req.params;
 
-    if (!Number(id)){
-        return res.status(400).json({"message" : "The id might be a number."});
+    if (!Number(id)) {
+        return res.status(400).json({ "message": "The id might be a number." });
     };
     //--------------------------------------
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             return res.status(200).json(book)
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "This id does not exist!"});
+    return res.status(404).json({ "message": "This id does not exist!" });
 };
 //========================================================================
 //========================================================================
 
 //////////---------- Post ----------//////////
-function addBook(req, res){
+function addBook(req, res) {
     const { title, author, year, numPages } = req.body;
     //--------------------------------------
 
-    if (!validString(title) || !validString(author)){
-        return res.status(400).json({"message" : "The title and the author might be given and not empty."});
+    if (!validString(title) || !validString(author)) {
+        return res.status(400).json({ "message": "The title and the author might be given and not empty." });
     };
     //--------------------------------------
 
-    if (!validNumber(year) || !validNumber(numPages)){
-        return res.status(400).json({"message" : "The year and the number of pages might be a number."});
+    if (!validNumber(year) || !validNumber(numPages)) {
+        return res.status(400).json({ "message": "The year and the number of pages might be a number." });
     };
     //--------------------------------------
 
     const newBook = {
-        id : dataBase.idGenerator++,
+        id: dataBase.idGenerator++,
         title,
         author,
         year,
@@ -75,137 +75,134 @@ function addBook(req, res){
 //========================================================================
 
 //////////---------- Put ----------//////////
-function updateBook(req, res){
-    const { id }                            = req.params;
+function updateBook(req, res) {
+    const { id } = req.params;
     const { title, author, year, numPages } = req.body;
 
     //--------------------------------------
-    
-    if (!Number(id)){
-        return res.status(400).json({"message" : "The id might be a number."});
+
+    if (!Number(id)) {
+        return res.status(400).json({ "message": "The id might be a number." });
     };
     //--------------------------------------
 
-    const incompletBody  = !title || !author || !year || !numPages;
-    
-    if (incompletBody){
-        return res.status(400).json({"message" : "The title, author, year and number of page might be given."});
+    const incompletBody = !title || !author || !year || !numPages;
+
+    if (incompletBody) {
+        return res.status(400).json({ "message": "The title, author, year and number of page might be given." });
     };
     //--------------------------------------
-    
+
     const invalidContent = !validString(title) || !validString(author) || !validNumber(year) || !validNumber(numPages);
 
-    if (invalidContent){
-        return res.status(400).json({"message" : "The fields may not be empty or invalid number"});
+    if (invalidContent) {
+        return res.status(400).json({ "message": "The fields may not be empty or invalid number" });
     };
     //--------------------------------------
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
-            book.title    = title;
-            book.author   = author;
-            book.year     = year;
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
+            book.title = title;
+            book.author = author;
+            book.year = year;
             book.numPages = numPages;
 
-            return res.status(200).json({"message" : "Book updated"});
+            return res.status(200).json({ "message": "Book updated" });
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
 //========================================================================
 //========================================================================
 
 //////////---------- Patch ----------//////////
-function updateTitle(req, res){
+function updateTitle(req, res) {
     const { id } = req.params;
     const { title } = req.body;
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             book.title = title;
 
-            return res.status(200).json({"message" : "Title updated"});
+            return res.status(200).json({ "message": "Title updated" });
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
 //____________________________________________________
 
-function updateAuthor(req, res){
+function updateAuthor(req, res) {
     const { id } = req.params;
     const { author } = req.body;
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             book.author = author;
 
-            return res.status(200).json({"message" : "Author updated"});
+            return res.status(200).json({ "message": "Author updated" });
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
 //____________________________________________________
 
-function updateYear(req, res){
+function updateYear(req, res) {
     const { id } = req.params;
     const { year } = req.body;
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             book.year = year;
 
-            return res.status(200).json({"message" : "Year updated"});
+            return res.status(200).json({ "message": "Year updated" });
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
 //____________________________________________________
 
-function updateNumPages(req, res){
+function updateNumPages(req, res) {
     const { id } = req.params;
     const { numPages } = req.body;
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             book.numPages = numPages;
 
-            return res.status(200).json({"message" : "Number of pages updated"});
+            return res.status(200).json({ "message": "Number of pages updated" });
         };
     };
     //--------------------------------------
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
 //========================================================================
 //========================================================================
 
 //////////---------- Delete ----------//////////
-function deleteBook(req, res){
-    const { id } = req. params;
+function deleteBook(req, res) {
+    const { id } = req.params;
     let index = 0;
 
-    for (let book of dataBase.books){
-        if (book.id === Number(id)){
+    for (let book of dataBase.books) {
+        if (book.id === Number(id)) {
             dataBase.books.splice(index, 1);
 
-            return res.status(200).json({"message" : "Book deleted"});
+            return res.status(200).json({ "message": "Book deleted" });
         };
         index++
     };
 
-    return res.status(404).json({"message" : "Book not found"});
+    return res.status(404).json({ "message": "Book not found" });
 };
-
-
-
 //========================================================================
 //========================================================================
 
