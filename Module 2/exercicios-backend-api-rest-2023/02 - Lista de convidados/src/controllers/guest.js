@@ -40,8 +40,26 @@ function addGuest(req, res){
 //===================================================================
 //===================================================================
 
+//////////---------- Delete ----------//////////
+function deleteGuest(req, res){
+    const { name } = req.params;
+
+    const targetGest = dataBase.indexOf(name);
+
+    if (targetGest === -1){
+        return res.status(404).json({"message" : "Guest not found. No guest was deleted."});
+    };
+
+    dataBase.splice(targetGest, 1);
+
+    return res.status(200).json({"message" : "Guest deleted"})
+};
+//===================================================================
+//===================================================================
+
 module.exports = {
     showGuests,
     getGuest,
-    addGuest
+    addGuest,
+    deleteGuest
 };

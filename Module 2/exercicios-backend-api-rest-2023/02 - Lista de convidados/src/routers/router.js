@@ -2,7 +2,6 @@ const express = require("express");
 const router = express();
 
 const control = require("../controllers/guest")
-
 const middleware = require("../middlewares/middleware")
 //===================================================================
 
@@ -12,6 +11,10 @@ router.get("/guests", middleware.nameQuery);  // middleware in the router to ver
 
 //////////---------- Post ----------//////////
 router.post("/guests", control.addGuest);
+//____________________________________________________
+
+//////////---------- Delete ----------//////////
+router.delete("/guests/:name", control.deleteGuest);
 //===================================================================
 
 module.exports = router;
