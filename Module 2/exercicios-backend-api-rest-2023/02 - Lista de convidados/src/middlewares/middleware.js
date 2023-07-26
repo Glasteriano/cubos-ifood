@@ -9,14 +9,14 @@ function nameQuery(req, res, next){  // Middleware that verify if the user send 
         guestRouter.showGuests(req, res);
     }
     else {  // localhost:3000/guest?name=theNameHere
-        guestRouter.getGuest(req, res)
+        guestRouter.getGuest(req, res);
     };
     //___________________________________________
 
-    next()
+    next();
 };
 //===================================================================
 
 module.exports = {
     nameQuery
-}
+};
