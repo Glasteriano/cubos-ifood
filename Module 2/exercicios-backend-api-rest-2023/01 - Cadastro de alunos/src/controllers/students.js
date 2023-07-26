@@ -104,9 +104,68 @@ function deleteStudent(req, res){
 };
 //=================================================================================================
 
+///////--------------- Put ---------------///////
+function updateStudent(req, res){
+    const { id }                        = req.params;
+    const { name, surname, age, course} = req.body;
+
+    const studentToUpdate = students.find((targetStudent) => {
+        return targetStudent.id === Number(id);
+    });
+    //----------------------------------------------------------
+
+    if (!studentToUpdate){
+        return res.status(404).json({"message" : "Student not found"})
+    };
+
+    if (!Number(id)){
+        return res.status(400).json({"message" : "Id might be a number"})
+    };
+
+    if (!name || !surname || !age || !course){
+        return res.status(400).json({"message" : "Name, surname, age and course might be given and not empty"});
+    };
+    //----------------------------------------------------------
+
+    studentToUpdate.name    = name;
+    studentToUpdate.surname = surname;
+    studentToUpdate.age     = age;
+    studentToUpdate.course  = course;
+
+    return res.status(204).send();
+};
+//=================================================================================================
+
+///////--------------- Patch ---------------///////
+function updateStudentCourse(req, res){
+    const { id }     = req.params;
+    const { course } = req.body;
+
+    const studentToUpdate = students.find((targetStudent) => {
+        return targetStudent.id === Number(id);
+    });
+    //----------------------------------------------------------
+
+    if (!studentToUpdate){
+        return res.status(404).json({"message" : "Student not found"})
+    };
+
+    if (!Number(id)){
+        return res.status(400).json({"message" : "Id might be a number"})
+    };
+    //----------------------------------------------------------
+
+    studentToUpdate.course = course;
+
+    return res.status(204).send();
+};
+//=================================================================================================
+
 module.exports = {
     listStudents,
     getStudent,
     addStudent,
-    deleteStudent
+    deleteStudent,
+    updateStudent,
+    updateStudentCourse
 };
