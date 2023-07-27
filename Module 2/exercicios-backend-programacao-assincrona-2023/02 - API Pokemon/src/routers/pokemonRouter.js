@@ -6,6 +6,7 @@ const router = express();
 
 //////////---------- Get ----------//////////
 router.get("/pokemons", pokemon.showPokemon);
+router.get("/pokemons/:idOrName", pokemon.getPokemon);
 //===================================================================
 //===================================================================
 
