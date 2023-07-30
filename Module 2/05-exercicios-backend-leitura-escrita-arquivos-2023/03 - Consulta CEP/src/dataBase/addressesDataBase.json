@@ -1,0 +1,38 @@
+[
+    {
+        "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "complemento": "lado ímpar",
+        "bairro": "Sé",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "ibge": "3550308",
+        "gia": "1004",
+        "ddd": "11",
+        "siafi": "7107"
+    },
+    {
+        "cep": "28953-570",
+        "logradouro": "Rua Santana",
+        "complemento": "",
+        "bairro": "Manguinhos",
+        "localidade": "Armação dos Búzios",
+        "uf": "RJ",
+        "ibge": "3300233",
+        "gia": "",
+        "ddd": "22",
+        "siafi": "0770"
+    },
+    {
+        "cep": "28953-590",
+        "logradouro": "Rua Celeste da Costa",
+        "complemento": "",
+        "bairro": "Manguinhos",
+        "localidade": "Armação dos Búzios",
+        "uf": "RJ",
+        "ibge": "3300233",
+        "gia": "",
+        "ddd": "22",
+        "siafi": "0770"
+    }
+]
