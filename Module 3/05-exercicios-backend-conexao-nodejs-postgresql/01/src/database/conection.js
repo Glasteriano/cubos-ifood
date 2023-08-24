@@ -1,6 +1,5 @@
 const { Pool } = require('pg');
 const database = require('./ignoreFile');
-//===============================================
 
 const pool = new Pool({
     host: 'localhost',
@@ -9,7 +8,6 @@ const pool = new Pool({
     password: database.password,
     database: 'library'
 });
-//===============================================
 
 module.exports = {
     pool

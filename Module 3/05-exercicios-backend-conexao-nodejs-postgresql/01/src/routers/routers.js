@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express();
 
-const { addAuthor } = require('../controllers/addAuthor');
-//=========================================================
+const { addAuthor, findAuthor } = require('../controllers/author');
 
-router.post('/author', addAuthor)
-//=========================================================
+router.post('/author', addAuthor);
+router.get('/author/:id', findAuthor);
 
 module.exports = router;

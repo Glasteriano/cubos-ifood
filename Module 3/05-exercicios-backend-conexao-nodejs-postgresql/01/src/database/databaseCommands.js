@@ -6,19 +6,17 @@ const insertAuthor = `
     RETURNING
         *
 `;
-//________________________________
 
-const selectAuthorByName = `
+const selectAuthorById = `
     SELECT
         *
     FROM
         authors
     WHERE
-        name = $1
-`
-//===============================================
+        id = $1
+`;
 
 module.exports = {
     insertAuthor,
-    selectAuthorByName
+    selectAuthorById
 };
