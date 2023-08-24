@@ -1,5 +1,5 @@
 const { pool } = require('../database/conection');
-const { insertAuthor, selectAuthorByName } = require('../database/databaSeCommands');
+const { insertAuthor } = require('../database/databaSeCommands');
 //===============================================
 
 async function addAuthor(req, res) {
@@ -10,8 +10,7 @@ async function addAuthor(req, res) {
     };
 
     try {
-        await pool.query(insertAuthor, [name, age]);
-        const result = await pool.query(selectAuthorByName, [name])
+        const result = await pool.query(insertAuthor, [name, age]);
 
         return res.status(201).json(result.rows);
 

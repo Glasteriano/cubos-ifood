@@ -3,6 +3,8 @@ const insertAuthor = `
         authors (name, age)
     VALUES
         ($1, $2)
+    RETURNING
+        *
 `;
 //________________________________
 
