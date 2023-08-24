@@ -12,4 +12,15 @@ CREATE TABLE
       age INTEGER
     );
 
+-- Table "books"
+
+CREATE TABLE
+	books (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        genre TEXT,
+        publisher TEXT,
+        publication_date DATE,
+        author_id INTEGER REFERENCES authors (id)
+    );
     

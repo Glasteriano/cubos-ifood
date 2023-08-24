@@ -28,7 +28,7 @@ async function findAuthor(req, res) {
             return res.status(404).json({ message: "Author not found" });
         };
 
-        return res.status(200).json(result.rows);
+        return res.status(200).json(result.rows[0]);
 
     } catch (error) {
         return res.status(500).json({ message: error.message });
