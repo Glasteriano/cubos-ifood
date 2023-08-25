@@ -23,10 +23,28 @@ const insertBook = `
         ($1, $2, $3, $4, $5)
     RETURNING
         *
+`;
+
+const selectBookByAuthor_id = `
+    SELECT
+        *
+    FROM
+        books
+    WHERE
+        author_id = $1
+`;
+
+const selectBooks = `
+    SELECT
+        *
+    FROM
+        books
 `
 
 module.exports = {
     insertAuthor,
     selectAuthorById,
-    insertBook
+    insertBook,
+    selectBookByAuthor_id,
+    selectBooks
 };
