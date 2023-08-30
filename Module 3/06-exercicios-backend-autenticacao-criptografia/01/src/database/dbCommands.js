@@ -6,3 +6,12 @@ export const insertUser = `
     RETURNING
         name, email, password
 `;
+
+export const selectUserByEmail = `
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        email = $1;
+`;
