@@ -50,6 +50,7 @@ export async function listPokemons(req, res) {
         };
 
         return res.json(pokemons);
+
     } catch (error) {
         return res.status(500).json({ message: "Internal error" });
     }
@@ -72,7 +73,6 @@ export async function listOnePokemon(req, res) {
 
         return res.json(pokemon)
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ message: "Internal error" });
     };
 };
@@ -92,8 +92,6 @@ export async function deletePokemon(req, res) {
         return res.status(204).send();
 
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ message: "Internal error" });
     };
-
 }
