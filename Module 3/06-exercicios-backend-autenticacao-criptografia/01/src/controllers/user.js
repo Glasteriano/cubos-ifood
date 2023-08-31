@@ -4,6 +4,7 @@ import { compare, hash } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { passwordJWT } from "../database/ignoreFile.js";
 
+
 export async function addUser(req, res) {
     const { name, email, password } = req.body;
 
@@ -21,7 +22,6 @@ export async function addUser(req, res) {
         console.log(error.message);
         return res.status(500).json({ message: 'Internal error' });
     };
-
 };
 
 export async function loginUser(req, res) {

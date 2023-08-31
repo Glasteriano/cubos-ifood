@@ -51,3 +51,19 @@ export const selectPokemonByUser_id = `
     WHERE
         user_id = $1
 `;
+
+export const selectPokemonById = `
+    SELECT
+        id, name, abilities, nickname, picture
+    FROM
+        pokemons
+    WHERE
+        id = $1 AND user_id = $2
+`;
+
+export const deletePokemonById = `
+    DELETE FROM
+        pokemons
+    WHERE
+        id = $1
+`;

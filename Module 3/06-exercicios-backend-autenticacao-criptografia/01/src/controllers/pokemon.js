@@ -1,5 +1,5 @@
 import { pool } from "../database/connection.js";
-import { insertPokemon, listAllPokemons, selectPokemonByUser_id, selectUserByEmail, updatePokemonNickname } from "../database/dbCommands.js";
+import { deletePokemonById, insertPokemon, listAllPokemons, selectPokemonById, selectPokemonByUser_id, selectUserByEmail, updatePokemonNickname } from "../database/dbCommands.js";
 
 
 export async function addPokemon(req, res) {
@@ -51,7 +51,49 @@ export async function listPokemons(req, res) {
 
         return res.json(pokemons);
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ message: "Internal error" });
     }
 };
+
+export async function listOnePokemon(req, res) {
+    const { id } = req.params;
+
+    try {
+        const pokemonFound = await pool.query(selectPokemonById, [id, req.userData.id]);
+
+        if (pokemonFound.rowCount === 0) {
+            return res.status(404).json({ message: "Pokémon not found" })
+        };
+
+        const pokemon = pokemonFound.rows[0]
+
+        pokemon.abilities = pokemon.abilities.split('"')[1].split(", ");
+        pokemon.owner = req.userData.name;
+
+        return res.json(pokemon)
+    } catch (error) {
+        console.log(error.message)
+        return res.status(500).json({ message: "Internal error" });
+    };
+};
+
+export async function deletePokemon(req, res) {
+    const { id } = req.params;
+
+    try {
+        const pokemonFound = await pool.query(selectPokemonById, [id, req.userData.id]);
+
+        if (pokemonFound.rowCount === 0) {
+            return res.status(404).json({ message: "Pokémon not found" })
+        };
+
+        await pool.query(deletePokemonById, [id])
+
+        return res.status(204).send();
+
+    } catch (error) {
+        console.log(error.message)
+        return res.status(500).json({ message: "Internal error" });
+    };
+
+}
